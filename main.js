@@ -1,5 +1,5 @@
 // import two Electron modules with CommonJS module syntax
-const { app, BrowserWindow, ipcMain } = require('electron/main')
+const { app, BrowserWindow } = require('electron/main')
 const path = require('node:path')
 
 // loads web page into a new BrowserWindow instance
@@ -14,12 +14,6 @@ const createWindow = () => {
 
 	win.loadFile('index.html')
 }
-
-// call function when the app is ready
-app.whenReady().then(() => {
-	ipcMain.handle('ping', () => 'pong')
-	createWindow()
-})
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') app.quit()
